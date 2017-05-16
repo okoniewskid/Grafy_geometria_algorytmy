@@ -80,24 +80,21 @@ class Interval_Tree
   end
 end
 
-VECTORS = [
-    [1,5],
-    [3,7],
-    [2,3],
-    [8,9],
-    [6,9],
-    [2,4],
-    [3,6],
-    [7,8]
-]
+VECTORS1 = [ [1,5], [3,7], [2,3], [8,9], [6,9], [2,4], [3,6], [7,8] ]
+VECTORS2 = [ [2,4], [6,8], [10,12], [14,16], [16,18] ]
+VECTORS3 = [ [2,4], [6,12], [2,4], [6,12], [2,8], [10,12], [2,8], [10,12] ]
+VECTORS4 = [ [2,4], [2,4], [2,4], [2,4], [2,4] ]
+VECTORS5 = [ [2,2], [4,4], [6,6], [8,8], [10,10] ]
+VECTORS6 = [ [2,2], [2,2], [2,2], [2,2], [2,2] ]
+
 tree = Interval_Tree.new
-tree.generate_intervals(VECTORS)
+tree.generate_intervals(VECTORS3)
 sorted = Interval::INTERVALS.sort_by(&:x1)
 puts 'Odcinki'
-0.upto(7) do |i|
+0.upto((sorted.length)-1) do |i|
   puts "[#{sorted[i].x1}, #{sorted[i].x2}]"
 end
-y = 6
+y = 7
 solution = tree.query_tree(tree.construct_tree(Interval::INTERVALS), y)
 puts 'Rozwiazanie'
 0.upto((solution.length)-1) do |i|
