@@ -22,7 +22,7 @@ class Counting
 
   def nearest_brute_force(points)
     min_dist, min_points = Float::MAX, []
-    points.combination(2) do |pi,pj|
+    points.combination(2) do |pi, pj|
       distance = distance_between(pi, pj)
       if distance < min_dist
         min_dist = distance
@@ -38,11 +38,11 @@ class Counting
     middle_point_x = sorted_by_x[middle].x
     distance_left, nearest_points_left = nearest_points(sorted_by_x[0, middle], sorted_by_y)
     distance_right, nearest_points_right = nearest_points(sorted_by_x[middle..-1], sorted_by_y)
-    min_distance, min_points = distance_left<distance_right ? [distance_left, nearest_points_left] : [distance_right, nearest_points_right]
-    good_y = sorted_by_y.find_all {|p| sorted_by_x.include?(p) and (middle_point_x - p.x).abs < min_distance}
+    min_distance, min_points = distance_left < distance_right ? [distance_left, nearest_points_left] : [distance_right, nearest_points_right]
+    good_y = sorted_by_y.find_all {|p| sorted_by_x.include?(p) && (middle_point_x - p.x).abs < min_distance}
     nearest_distance, nearest_points = min_distance, min_points
     0.upto(good_y.length - 2) do |i|
-      (i+1).upto(good_y.length - 1) do |k|
+      (i + 1).upto(good_y.length - 1) do |k|
         break if (good_y[k].y - good_y[i].y) >= min_distance
         dist = distance_between(good_y[i], good_y[k])
         if dist < nearest_distance
@@ -56,7 +56,7 @@ class Counting
 end
 
 c = Counting.new
-puts "Ile punktów wygenerować?"
+puts 'Ile punktów wygenerować?'
 c.generate_points(gets.chomp.to_i)
 sorted_by_x = Point::POINTS.sort_by(&:x)
 sorted_by_y = sorted_by_x.sort_by(&:y)

@@ -34,11 +34,6 @@ class Polygon
       VERTEX_Y << gets.chomp.to_f
       loop_count += 1
     end
-    i = 0
-    while i < number do
-      puts "add_vectors debug VertexX = #{VERTEX_X[i]}, VertexY = #{VERTEX_Y[i]}"
-      i += 1
-    end
     point = get_point
     check_if_inside(point, number)
   end
